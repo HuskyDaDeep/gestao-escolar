@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizar Turmas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Pages/style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Visualizar Turmas</h2>
+        <p class="text-center">Veja abaixo todas as turmas cadastradas.</p>
+        <div id="listaTurmas" class="row">
+            <!-- As turmas serão carregadas dinamicamente aqui -->
+        </div>
+    </div>
+.
+    <!-- Modal -->
+    <div class="modal fade" id="modalTurma" tabindex="-1" aria-labelledby="modalTurmaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="modalTurmaLabel">Detalhes da Turma</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Professor:</strong> <span id="modalProfessor"></span></p>
+                    <p><strong>Alunos:</strong></p>
+                    <div class="row" id="modalAlunos" style="max-height: 400px; overflow-y: auto;">
+                        <!-- Alunos serão inseridos aqui -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let turmasGlobais = [];
+
+        // Função para carregar as turmas
+        function carregarTurmas() {
+            fetch("http://localhost:8080/api/turma/listar")
+                .then(response => response.json())
+                .then(turmas => {
+                    turmasGlobais = turmas; // Guardar as turmas para usar depois
+                    const listaTurmas = document.getElementById("listaTurmas");
+                    listaTurmas.innerHTML = "";
+
+                    if (turmas.length === 0) {
+                        listaTurmas.innerHTML = `<p class="text-center">Nenhuma turma encontrada.</p>`;
+                        return;
+                    }
+
+                    turmas.forEach((turma, index) => {
+                        const card = document.createElement("div");
+                        card.className = "col-md-6 col-lg-4 mb-4";
+                        card.innerHTML = `
+                            <div class="card h-100" role="button" onclick="abrirModal(${index})">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="card-title">${turma.codigo}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Ano Letivo:</strong> ${turma.anoLetivo}</p>
+                                    <p><strong>Turno:</strong> ${turma.turno}</p>
+                                </div>
+                            </div>
+                        `;
+                        listaTurmas.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error("Erro ao carregar turmas:", error);
+                    const listaTurmas = document.getElementById("listaTurmas");
+                    listaTurmas.innerHTML = `<p class="text-center text-danger">Erro ao carregar turmas. Tente novamente mais tarde.</p>`;
+                });
+        }
+
+        function abrirModal(index) {
+            const turma = turmasGlobais[index];
+
+            document.getElementById("modalProfessor").innerText = turma.professor?.nome || "Não informado";
+
+            const alunosContainer = document.getElementById("modalAlunos");
+            alunosContainer.innerHTML = "";
+
+            if (turma.alunos && turma.alunos.length > 0) {
+                turma.alunos.forEach(aluno => {
+                    const alunoDiv = document.createElement("div");
+                    alunoDiv.className = "col-12 col-md-6";
+                    alunoDiv.innerHTML = `<li>${aluno.nome}</li>`;
+                    alunosContainer.appendChild(alunoDiv);
+                });
+            } else {
+                alunosContainer.innerHTML = "<p>Nenhum aluno matriculado</p>";
+            }
+
+            const modal = new bootstrap.Modal(document.getElementById('modalTurma'));
+            modal.show();
+        }
+
+        // Carrega as turmas ao carregar a página
+        document.addEventListener("DOMContentLoaded", carregarTurmas);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
