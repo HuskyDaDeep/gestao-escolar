@@ -22,7 +22,7 @@
                     <li class="nav-item"><a class="nav-link" href="Professor.html">Professores</a></li>
                     <li class="nav-item"><a class="nav-link" href="Disciplina.html">Disciplinas</a></li>
                     <li class="nav-item"><a class="nav-link" href="turmas.html">Turmas</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="../Pages/Vizualizar.html">Classroom</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Vizualizar.html">Consultar Turmas</a></li>
                 </ul>
             </div>
         </div>
@@ -43,14 +43,14 @@
                 <div class="invalid-feedback">Informe o ano letivo.</div>
             </div>
             <div class="col-md-6">
-                <label for="periodo" class="form-label">periodo</label>
+                <label for="periodo" class="form-label">Periodo</label>
                 <input type="text" class="form-control" id="periodo" placeholder="Ex.: 6" required>
                 <div class="invalid-feedback">Informe o periodo.</div>
             </div>
     
             <div class="col-md-12">
                 <label for="alunosMatriculados" class="form-label">Alunos Matriculados</label>
-                <select multiple class="form-select" id="aluno" required>
+                <select multiple class="form-select" id="aluno" aria-placeholder="Alunos" required>
                 </select>
                 <div class="invalid-feedback">Selecione pelo menos um aluno.</div>
             </div>
@@ -65,6 +65,7 @@
             <div class="col-md-6">
                 <label for="disciplinaTurma" class="form-label">Disciplina Associada</label>
                 <select class="form-select" id="disciplina" required>
+                    <option value="">Selecione uma disciplina</option>
                   
                 </select>
                 <div class="invalid-feedback">Selecione uma disciplina.</div>
@@ -72,6 +73,7 @@
             <div class="col-md-12">
                 <label for="turno" class="form-label">Turno</label>
                 <select class="form-select" id="turno" required>
+                    <option value="">Selecione um turno</option>
                     <option value="Manhã">Manhã</option>
                     <option value="Tarde">Tarde</option>
                     <option value="Noite">Noite</option>

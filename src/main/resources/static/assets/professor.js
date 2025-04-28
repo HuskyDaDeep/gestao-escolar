@@ -13,12 +13,19 @@ document.addEventListener("DOMContentLoaded", function () {
             email: document.querySelector("#email").value
         };
 
+        
+
         fetch("http://localhost:8080/api/professor/registrar", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(professor)
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro ao cadastrar professor.");
+            }
+            return response.json();
+        })
         .then(data => {
             alert("Professor cadastrado com sucesso!");
             formProfessor.reset();
