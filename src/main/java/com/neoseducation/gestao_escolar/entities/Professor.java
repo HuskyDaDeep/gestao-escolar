@@ -3,7 +3,6 @@ package com.neoseducation.gestao_escolar.entities;
 import java.time.LocalDate;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -12,9 +11,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 
 @Entity
 @Table(name = "professor")
@@ -37,6 +37,7 @@ public class Professor {
     private String telefone;
     
     @Email(message = "E-mail inválido")
+    @NotBlank(message="O E-mail deve ser preenchido!")
     private String email;
 
 
