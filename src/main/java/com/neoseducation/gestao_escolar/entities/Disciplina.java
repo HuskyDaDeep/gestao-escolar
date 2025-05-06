@@ -1,7 +1,13 @@
 package com.neoseducation.gestao_escolar.entities;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "disciplina")
@@ -21,10 +27,6 @@ public class Disciplina {
     @Positive(message = "Carga horária deve ser um valor positivo")
     private int cargaHoraria;
 
-    @ManyToOne
-    @JoinColumn(name = "professor_id", nullable = false)
-    private Professor professor;
-    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -57,12 +59,5 @@ public class Disciplina {
         this.cargaHoraria = cargaHoraria;
     }
     
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
-    }
 
 }

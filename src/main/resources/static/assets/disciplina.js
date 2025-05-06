@@ -4,18 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
     formDisciplina.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const professorId = document.querySelector("#professor").value;
-
-        if (!professorId || isNaN(professorId)) {
-            alert("Por favor, selecione um professor válido.");
-            return;
-        }
+        
 
         const disciplina = {
             nome: document.querySelector("#nomeDisciplina").value,
             codigo: document.querySelector("#codigoDisciplina").value,
             cargaHoraria: document.querySelector("#cargaHoraria").value,
-            professor: { id: parseInt(professorId) }
+           
         };
 
         fetch("http://localhost:8080/api/disciplina/registrar", {

@@ -1,168 +1,268 @@
+/* Estilos Gerais */
 body {
     font-family: Arial, sans-serif;
     background-image: url(../Pages/img/background.jpg);
     background-position: fixed;
     margin: 0;
     padding: 20px;
+    color: #333;
 }
-.navbar-brand {
-    font-size: 24px;
-    color: #000000;
-    font-family: 'Arial', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+
+/* Container Principal */
 .container {
-    width: 700px;
-    margin-top: 5px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
     background: linear-gradient(#6a7ec2, #2870a0);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
+
+/* Navbar Modernizado com Efeito High-Tech */
 .container_nav {
-    width: auto;
-    margin: auto;
-    margin-bottom: 0%;
-    background: linear-gradient(#6a7ec2, #2870a0);
-    padding: 10px 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    position: relative;
-    z-index: 1;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #6a7ec2, #2870a0);
+    padding: 15px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 20px;
+    z-index: 1000;
 }
 
+.navbar-brand {
+    font-size: 28px;
+    color: white;
+    font-family: 'Arial', Impact, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Menu de Navegação - Efeito High-Tech */
 .container_nav ul {
-    list-style-type: none;
+    display: flex;
+    gap: 25px;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: auto;
+    list-style: none;
 }
 
 .container_nav ul li {
-    margin-right: 20px;
-}
-
-.container_nav ul li:last-child {
-    margin-right: 0;
+    position: relative;
+    padding: 5px 0;
 }
 
 .container_nav ul li a {
     text-decoration: none;
     color: white;
     font-size: 16px;
-    transition: color 0.3s ease;
+    font-weight: 500;
+    padding: 10px 15px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    z-index: 1;
 }
 
+/* Retângulo de fundo high-tech */
+.container_nav ul li a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    z-index: -1;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-delay: 0.1s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Linha inferior */
+.container_nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 5px;
+    left: 15px;
+    background-color: white;
+    transition: width 0.3s ease-out;
+}
+
+/* Efeito hover - Ativa ambos os elementos */
 .container_nav ul li a:hover {
-    color: #000000;
-}
-.navbar-nav {
-    display: flex;
-    flex-direction: row;
+    transform: translateY(-2px);
 }
 
-.container_nav ul li:hover {
-    background-color: transparent;
-    color: #000000;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+.container_nav ul li a:hover::before {
+    transform: scale(1);
+    opacity: 1;
 }
 
+.container_nav ul li a:hover::after {
+    width: calc(100% - 30px);
+}
+
+/* Efeito ativo */
+.container_nav ul li a.active {
+    font-weight: bold;
+}
+
+.container_nav ul li a.active::before {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.container_nav ul li a.active::after {
+    width: calc(100% - 30px);
+}
+
+/* Títulos */
 h1 {
-    color: #04071a;
+    color: white;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
 }
-h2, h3 {
-    color: #000000;
+
+h2 {
+    color: white;
+    text-align: left;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 25px 0 15px;
+}
+
+/* Seção de Conteúdo */
+.content-section {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Lista de Itens */
+.item-list {
+    list-style: none;
+    padding: 0;
+}
+
+.item-list li {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.item-list li:hover {
+    background-color: #f5f5f5;
+}
+
+/* Estado Vazio (Nenhuma turma encontrada) */
+.empty-state {
     text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    color: #666;
+    margin: 20px 0;
 }
 
-label{
-    display: block;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #000000;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
+/* Botões */
 button {
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
+    display: inline-block;
+    margin: 10px 5px;
+    padding: 10px 20px;
     background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
-.form {
-    display: none;
-    margin: 20px 0;
-}
-
-input {
-    width: calc(100% - 40px);
-    padding: 10px;
-}
-
-.resultado {
-    margin-top: 20px;
-    background: #e9ecef;
-    padding: 10px;
-    border-radius: 5px;
-}
-
+/* Cards */
 .card {
-    display: flex;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
-    width: 100%;
-    max-width: 250px;
-    text-align: center;
-    height: 450px;
-}
-.card button {
-    margin-top: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5%;
-    cursor: pointer;
-}
-.card button:hover {
-    background-color: #0056b3;
-}
-.card img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-.card:hover {
-    transform: scale(1.05);
 }
 
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Formulários */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container_nav {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .container_nav ul {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    /* Ajuste para o efeito high-tech em mobile */
+    .container_nav ul li a {
+        padding: 12px 15px;
+    }
+    
+    .container_nav ul li a::after {
+        left: 15px;
+    }
+}

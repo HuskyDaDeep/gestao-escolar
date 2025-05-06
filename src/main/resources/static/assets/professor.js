@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
             email: document.querySelector("#email").value
         };
 
+        // Valida os campos
+        if (!professor.nome || !professor.dataNascimento || !professor.cpf || !professor.endereco || !professor.telefone || !professor.email) {
+            alert("Por favor, preencha todos os campos corretamente.");
+            return;
+        }
+
         
 
         fetch("http://localhost:8080/api/professor/registrar", {
@@ -22,8 +28,11 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => {
             if (!response.ok) {
+                alert("Erro ao cadastrar professor.");
                 throw new Error("Erro ao cadastrar professor.");
+               
             }
+            
             return response.json();
         })
         .then(data => {
@@ -33,3 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Erro ao cadastrar professor:", error));
     });
 });
+
+
+
+

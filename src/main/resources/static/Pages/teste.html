@@ -1,0 +1,16 @@
+<form id="salaForm">
+    <label for="nomeSala">Nome da Sala:</label>
+    <input type="text" name="nomeSala" required><br><br>
+  
+    <label for="alunos">Selecionar Alunos:</label>
+    <select id="alunos" name="alunos[]" multiple required size="6">
+      <!-- Exemplo fixo, você deve popular isso via JS -->
+      <option value="1">João</option>
+      <option value="2">Maria</option>
+      <option value="3">Carlos</option>
+    </select>
+  
+    <br><br>
+    <button type="submit">Cadastrar Sala</button>
+  </form>
+  

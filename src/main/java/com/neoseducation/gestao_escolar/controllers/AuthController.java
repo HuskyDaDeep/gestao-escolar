@@ -1,10 +1,14 @@
 package com.neoseducation.gestao_escolar.controllers;
 
-import com.neoseducation.gestao_escolar.security.JwtUtil;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.neoseducation.gestao_escolar.security.JwtUtil;
 
 @RestController
 @RequestMapping("/auth")
@@ -22,7 +26,7 @@ public class AuthController {
         String password = credentials.get("password");
 
         // Simulação de autenticação (substituir por validação real)
-        if ("admin".equals(username) && "admin123".equals(password)) {
+        if ("nada".equals(username) && "admin123".equals(password)) {
             String token = jwtUtil.generateToken(username, "ROLE_ADMIN");
             return ResponseEntity.ok(Map.of("token", token));
         } else if ("usuario".equals(username) && "user123".equals(password)) {
